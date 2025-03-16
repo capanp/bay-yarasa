@@ -1,0 +1,22 @@
+.character {
+    position: relative;
+    width: 200px; /* Görsel boyutunu ayarla */
+}
+
+.character img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.blink {
+    opacity: 0;
+    animation: blink-animation 5s infinite;
+}
+
+@keyframes blink-animation {
+    0%, 97% { opacity: 0; }
+    98%, 99% { opacity: 1; }
+    100% { opacity: 0; }
+}

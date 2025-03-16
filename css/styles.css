@@ -1,0 +1,459 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: "Noto Sans", 'Segoe UI', sans-serif;
+}
+
+body {
+    background: rgb(21,26,32);
+    background: linear-gradient(75deg, rgba(21,26,32,1) 0%, rgba(75,81,85,1) 100%);
+    background-image: url("../images/greyfade.jpg"), linear-gradient(75deg, rgba(21,26,32,1) 0%, rgba(75,81,85,1) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    min-height: 950px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Yatayda ortalama */
+    justify-content: center; /* Dikeyde ortalama */
+    position: relative;
+}
+
+.tutorial-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.tutorial-area {
+    overflow-y: auto; /* Dikey kaydırma */
+    overflow-x: hidden; /* Yatay kaydırma olmasın */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 26px;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.tutorial-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* Bu şekilde ortalama sağlanır */
+    box-shadow: 0px 0px 30px #00000050;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+    border-left: 2px solid rgb(40, 40, 40);
+    transition: all ease 0.3s;
+}
+
+.tutorial-title {
+    background: linear-gradient(to right, hsla(207, 0%, 24%, 0.592), rgba(131, 51, 18, 0) 60%);
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+}
+
+.tutorial-card {
+    display: flex;
+    margin-left: 30px;
+    align-items: center;
+}
+
+.tutorial-card div {
+    width: calc(125px/1.75);
+    height: calc(175px/1.75);
+}
+
+.tutorial-des p {
+    margin-left: 15px;
+}
+
+.talk {
+    display: flex;
+    position: relative;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.talk-table {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 3.07%, rgba(6, 37, 65, 0.35) 88.06%);
+    box-shadow: 0px 0px 50px #000;
+    border-left: 2px solid #ffffff10;
+
+    font-size: 20px;
+}
+
+.talk-button {
+    text-transform: none !important;
+}
+
+.main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px 0 20px 0;
+    box-shadow: 0px 0px 30px #00000050;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    border-left: 2px solid rgb(40, 40, 40);
+    transition: all ease 0.3s;
+}
+
+.opponent {
+    display: flex;
+    position: relative;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.text {
+    margin: 10px;
+}
+
+.opponent-table {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 3.07%, rgba(6, 37, 65, 0.35) 88.06%);
+    box-shadow: 0px 0px 50px #000;
+    border-left: 2px solid #ffffff10;
+}
+
+.opponent-hands {
+    display: flex;
+}
+
+.main-table {
+    display: flex;
+    justify-content: center;
+}
+
+.main-cards {
+    display: flex;
+    justify-content: center;
+}
+
+.character {
+    display: flex;
+    position: relative;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.main-content {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 3.07%, rgba(6, 37, 65, 0.35) 88.06%);
+    box-shadow: 0px 0px 50px #000;
+    border-left: 2px solid #ffffff10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.character-table {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 3.07%, rgba(6, 37, 65, 0.35) 88.06%);
+    box-shadow: 0px 0px 50px #000;
+    border-left: 2px solid #ffffff10;
+}
+
+.character-hands {
+    display: flex;
+}
+
+.title {
+    background: linear-gradient(to right, #28405397, rgba(131, 51, 18, 0) 60%);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+}
+
+.top-title {
+    background: linear-gradient(to right, #833312FF, #83331200);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+}
+
+.main-title {
+    background: linear-gradient(to right, hsla(207, 0%, 24%, 0.592), rgba(131, 51, 18, 0) 60%);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+}
+
+.score-title {
+    background: linear-gradient(to right, #29493A, #83331200);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+}
+
+.hp-table {
+    width: 100%;
+    max-width: 1000px;
+    background: linear-gradient(to right, #83331200, #833312FF);
+    border-left: 2px solid #7f3119;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0px 0px 5px #000;
+    box-shadow: 0px 0px 30px #000;
+}
+
+.score-table {
+    width: 100%;
+    max-width: 1000px;
+    background: linear-gradient(to right, #83331200, #29493A);
+    border-left: 2px solid #29493A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0px 0px 5px #000;
+    box-shadow: 0px 0px 30px #000;
+}
+
+.button-table {
+    margin: auto 0;
+}
+
+.select-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;
+    height: 125px;
+    margin: 37.5px;
+    border: 0;
+    background-color: #7f7f7f;
+    color: #333b40;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px;
+    margin: 10px;
+    background-color: #1d1f20;
+    border: 3px solid #ffffff50;
+    color: white;
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.start-button:hover {
+    border: 3px solid rgb(160, 160, 160);
+    transform: translateY(-2px);
+}
+
+.give-button {
+    width: 130px;
+    height: 100px;
+    padding: 0;
+}
+
+.red {
+    background-color: red;
+    background-image: url(../images/kırmızı-kart.png);
+    background-size: cover; /* Resmi div'in boyutlarına göre sığdır */
+    background-position: center;
+}
+
+.green {
+    background-color: green;
+    background-image: url(../images/yeşil-kart.png);
+    background-size: cover; /* Resmi div'in boyutlarına göre sığdır */
+    background-position: center;
+}
+
+.blue {
+    background-color: blue;
+    background-image: url(../images/mavi-kart.png);
+    background-size: cover; /* Resmi div'in boyutlarına göre sığdır */
+    background-position: center;
+}
+
+.black {
+    background-color: black;
+    background-image: url(../images/siyah-kart.png);
+    background-size: cover; /* Resmi div'in boyutlarına göre sığdır */
+    background-position: center;
+}
+
+.selected {
+    border: 3px solid #ffd000 !important;
+}
+
+.empty {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.card {
+    width: 125px;
+    height: 175px;
+    border-radius: 5px;
+    border: 1px solid #11111190;
+    margin: 0 10px;
+}
+
+.footer {
+    width: 100%;
+    padding: 30px 0;
+    text-align: center;
+    background-color: black;
+    color: #777;
+    user-select: none;
+}
+
+.footer-space {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.all-hp {
+    margin: 10px 10px;
+    height: 25px;
+    border-radius: 15px;
+    width: (100% - 10px);
+    background: linear-gradient(to right, #83331200, rgba(0, 0, 0, 0.3), rgba(131, 52, 18, 0.2));
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.opponent-hp {
+    height: 100%;
+    background: linear-gradient(to right, rgba(131, 52, 18, 0.2), #833312FF);
+}
+
+.character-hp {
+    height: 100%;
+    background: linear-gradient(to right, #29493A, rgba(41, 73, 58, 0.2));
+}
+
+
+
+
+
+
+
+.opponent-image {
+    position: relative;
+    width: 200px; /* Görsel boyutunu ayarla */
+    height: 200px;
+    margin: auto 20px auto 0;
+}
+
+.opponent-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.blink {
+    opacity: 0;
+    animation: blink-animation 5s infinite;
+}
+
+@keyframes blink-animation {
+    0%, 97% { opacity: 0; }
+    98%, 99% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+
+
+@media (max-width: 910px) or (max-height: 1080px) {
+    .card {
+        width: calc(125px/1.5);
+        height: calc(175px/1.5);
+    }
+
+    .opponent-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .opponent-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .give-button {
+        width: 100px;
+        height: 100px;
+        font-size: 16px;
+    }
+
+    .opponent {
+        margin-bottom: 25px;
+    }
+
+    .character {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 635px) {
+    .card {
+        width: calc(125px/1.75);
+        height: calc(175px/1.75);
+    }
+
+    .opponent-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .opponent-image img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .opponent-hands div {
+        width: calc(125px/2);
+        height: calc(175px/2);
+    }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="icon" type="image/x-icon" href="./images/logo.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz@0,14..32;1,14..32&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        var timestamp = new Date().getTime();
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './css/styles.css?v=' + timestamp;
+        document.head.appendChild(link);
+    </script>
+
+</head>
+
+<body>
+    <div class="wrap" id="app">
+        <button style="border-radius: 50%; padding: 15px !important;" class="start-button tutorial-button"
+            onclick="showTutorial()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-question"
+                viewBox="0 0 16 16">
+                <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+            </svg>
+        </button>
+
+        <div class="tutorial-area" id="tutorial-area" style="display: none;">
+            <div class="tutorial-content">
+                <div class="tutorial-title">
+                    Nasıl Oynanır?
+                </div>
+                <div class="tutorial-des">
+                    <p>Her el ortaya Kırmızı, Yeşil, Mavi ve Siyah 4 adet rastgele kart dağıtılır.</p>
+                    <div class="tutorial-card">
+                        <div class="red card"></div>
+                        <div class="green card"></div>
+                        <div class="blue card"></div>
+                        <div class="black card"></div>
+                    </div>
+                    <p>Sıra sana geldiğinde 3 kart seçersin ve tuttuğun karta bağlı olarak puan kazanırsın.</p>
+                    <p>Eğer kombon yoksa kırmızı kart başına 50 puan kazanırsın.</p>
+
+                    <div class="tutorial-title">
+                        Kombolar
+                    </div>
+                    <p>Sırası fark etmeksizin aşşağıdaki kart dizilimleri fazladan puan kazandırır.</p>
+                    <p>• 500 Puan</p>
+                    <div class="tutorial-card">
+                        <div class="black card"></div>
+                        <div class="black card"></div>
+                        <div class="black card"></div>
+                    </div>
+                    <p>• 250 Puan</p>
+                    <div class="tutorial-card">
+                        <div class="red card"></div>
+                        <div class="green card"></div>
+                        <div class="green card"></div>
+                    </div>
+                    <p>• 250 Puan</p>
+                    <div class="tutorial-card">
+                        <div class="red card"></div>
+                        <div class="blue card"></div>
+                        <div class="blue card"></div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <button class="start-button" onclick="hideTutorial()">Anladım</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="talk" style="display: none;">
+            <div class="opponent-image">
+                <img src="./images/bat-rider1.png" alt="Düz duran karakter" class="normal" style="margin: auto 0;"
+                    height="200px" width="200px">
+                <img src="./images/bat-rider2.png" alt="Göz kırpan karakter" class="blink" style="margin: auto 0;"
+                    height="200px" width="200px">
+            </div>
+            <div class="talk-content">
+                <div class="talk-table">
+                    <div class="title">Bay Yarasa</div>
+                    <div style="padding: 0 10px 8px 10px;" class="text" id="talk-area">Hey sen!</div>
+                </div>
+                <button class="start-button talk-button" id="talk-button1" onclick="selectChoice(this)">Ben mi?</button>
+                <button class="start-button talk-button" id="talk-button2" onclick="selectChoice(this)">..?</button>
+            </div>
+        </div>
+
+        <div class="hp-table">
+            <div class="top-title">Baskınlık</div>
+            <div class="all-hp">
+                <div style="height: 100%; width: 50%; display: flex; justify-content: right;">
+                    <div class="opponent-hp" :style="{ width: opponentHpHeight }"></div>
+                </div>
+                <div style="height: 100%; width: 50%; display: flex; justify-content: left;">
+                    <div class="character-hp" :style="{ width: characterHpHeight }"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-title">Oyun Alanı</div>
+            <div class="opponent">
+                <div class="opponent-image">
+                    <img src="./images/bat-rider1.png" alt="Düz duran karakter" class="normal" style="margin: auto 0;"
+                        height="200px" width="200px">
+                    <img src="./images/bat-rider2.png" alt="Göz kırpan karakter" class="blink" style="margin: auto 0;"
+                        height="200px" width="200px">
+                </div>
+                <div class="oppenent-content">
+                    <div class="opponent-table" id="opponent-table">
+                        <div class="title">Bay Yarasa'nın Eli</div>
+                        <div class="text">Hadi kartları dağıt da görelim kim neyin nesiymiş!</div>
+                        <div class="opponent-hands" id="opponent-hands">
+                            <div class="empty card" id="opponent-card1"></div>
+                            <div class="empty card" id="opponent-card2"></div>
+                            <div class="empty card" id="opponent-card3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-table" id="main-table">
+                <div class="main-content">
+                    <div>
+                        <div class="title">Masadaki Kartlar</div>
+                        <div class="main-cards" id="main-cards">
+                            <div class="empty card" id="main-card1" onclick="selectCard(this)"></div>
+                            <div class="empty card" id="main-card2" onclick="selectCard(this)"></div>
+                            <div class="empty card" id="main-card3" onclick="selectCard(this)"></div>
+                            <div class="empty card" id="main-card4" onclick="selectCard(this)"></div>
+                        </div>
+                    </div>
+                    <button class="start-button" id="start-game-button" onclick="startGame()">Kartları Dağıt</button>
+                </div>
+                </button>
+            </div>
+
+            <div class="character">
+                <div class="button-table">
+                    <button class="start-button give-button" id="score-button" onclick="scoreCards()">Kartları
+                        Tut</button>
+                </div>
+                <div class="character-table">
+                    <div class="title">Senin Elin</div>
+                    <div class="character-hands" id="character-hands">
+                        <div class="empty card" id="character-card1" onclick="removeCard(this)"></div>
+                        <div class="empty card" id="character-card2" onclick="removeCard(this)"></div>
+                        <div class="empty card" id="character-card3" onclick="removeCard(this)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="score-table">
+            <div class="score-title">Toplam Skorun</div>
+            <div>
+                <h2>Skor: {{ score }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-space">
+            <a style="margin-right: 10px;" class="gh" href="https://github.com/capanp" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-github animated animatedFadeInUp fadeInUp" viewBox="0 0 16 16">
+                    <path fill="#666666"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                </svg>
+            </a>
+            <a style="margin-right: 10px;" class="fb" href="https://www.facebook.com/capmayan/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-facebook animated animatedFadeInUp fadeInUp" viewBox="0 0 16 16">
+                    <path fill="#666666"
+                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                </svg>
+            </a>
+            <a class="fb" href="https://steamcommunity.com/id/capansj/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-steam animated animatedFadeInUp fadeInUp" viewBox="0 0 16 16">
+                    <path fill="#666666"
+                        d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z" />
+                    <path fill="#666666"
+                        d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048" />
+                </svg>
+            </a>
+            <br>
+            Basit bir kart oyunu <a href="https://capanp.github.io/" target="_blank">portfolyoma göz atmak için
+                tıkla.</a>
+        </div>
+    </div>
+
+    <script>
+        var timestamp = new Date().getTime();
+        var script = document.createElement('script');
+        script.src = './js/scripts.js?v=' + timestamp;
+        document.head.appendChild(script);
+    </script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    score: 0,
+                    hp:0
+                };
+            },
+            computed: {
+                characterHpHeight() {
+                    if(this.hp >=1000) {
+                        finishGame("c");
+                    } else if (this.hp >= 0) {
+                        return `${(this.hp / 1000) * 100}%`;
+                    }
+                    return '0%';
+                },
+                opponentHpHeight() {
+                    if(this.hp <= -1000) {
+                        finishGame("o");
+                    } else if (this.hp < 0) {
+                        return `${(-this.hp / 1000) * 100}%`;  // negatif puanı pozitife çeviriyoruz
+                    }
+                    return '0%';
+                }
+            },
+            methods: {
+                updateScore(newScore) {
+                    this.score += newScore;
+                },
+                updateHP(newHP) {
+                    this.hp += newHP;
+                }
+            }
+        }).mount("#app");
+
+    </script>
+</body>
+
+</html>
